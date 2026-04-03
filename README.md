@@ -4,10 +4,16 @@ This repository contains standalone Distlang example apps.
 
 ## Install Distlang
 
-Linux/macOS:
+Stable release (Linux/macOS):
 
 ```bash
 curl -fsSL https://distlang.com/install | bash
+```
+
+Latest from `main` for testing (Linux/macOS):
+
+```bash
+curl -fsSL https://distlang.com/install-main | bash
 ```
 
 Windows PowerShell:
@@ -19,7 +25,7 @@ irm https://distlang.com/install.ps1 | iex
 Verify install:
 
 ```bash
-distlang --help
+distlang --version
 ```
 
 ## Apps
@@ -31,3 +37,5 @@ distlang --help
 ```bash
 make verify
 ```
+
+For app testing against the newest `main` build, install with `install-main` first and then run `make verify` or `make run`.

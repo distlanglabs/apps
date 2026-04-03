@@ -9,7 +9,7 @@ help:
 	@echo "  make clean  - remove local build output"
 
 check-distlang:
-	@command -v $(DISTLANG) >/dev/null 2>&1 || (echo "distlang not found on PATH; install it with 'curl -fsSL https://distlang.com/install | bash'" && exit 1)
+	@command -v $(DISTLANG) >/dev/null 2>&1 || (echo "distlang not found on PATH; install it with 'curl -fsSL https://distlang.com/install | bash' or 'curl -fsSL https://distlang.com/install-main | bash'" && exit 1)
 
 deps:
 	@if command -v workerd >/dev/null 2>&1; then \

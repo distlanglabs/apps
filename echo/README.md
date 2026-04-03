@@ -8,10 +8,16 @@ This app shows a standalone Distlang app using:
 
 ## Install Distlang
 
-Linux/macOS:
+Stable release (Linux/macOS):
 
 ```bash
 curl -fsSL https://distlang.com/install | bash
+```
+
+Latest from `main` for testing (Linux/macOS):
+
+```bash
+curl -fsSL https://distlang.com/install-main | bash
 ```
 
 Windows PowerShell:
@@ -27,6 +33,8 @@ make run
 ```
 
 The local runtime listens on `http://127.0.0.1:5656`.
+
+If you are testing the newest Distlang changes, use `install-main` before running this example.
 
 ## Build
 
