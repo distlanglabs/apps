@@ -1,15 +1,12 @@
 DISTLANG ?= distlang
 
-.PHONY: help check-distlang deps cloudflare-init run debug build cloudflare-deps dev deploy
+.PHONY: help check-distlang deps build run clean
 
 help:
 	@echo "Targets:"
-	@echo "  make build          - build the v8 backend"
-	@echo "  make run            - run the local v8 runtime"
-	@echo "  make cloudflare-init - create local Cloudflare target scaffolding"
-	@echo "  make cloudflare-deps - install/check wrangler via Makefile.Cloudflare"
-	@echo "  make dev            - run wrangler dev via Makefile.Cloudflare"
-	@echo "  make deploy         - route deploy via Makefile.Cloudflare"
+	@echo "  make build  - compile index.js into local dist/ output"
+	@echo "  make run    - build and run the app locally on port 5656"
+	@echo "  make clean  - remove local build output"
 
 check-distlang:
 	@command -v $(DISTLANG) >/dev/null 2>&1 || (echo "distlang not found on PATH; install it with 'curl -fsSL https://distlang.com/install | bash'" && exit 1)
@@ -22,23 +19,11 @@ deps:
 		npm install -g workerd; \
 	fi
 
-cloudflare-init: check-distlang
-	@$(MAKE) -f Makefile.Cloudflare init DISTLANG=$(DISTLANG)
+build: check-distlang
+	$(DISTLANG) build index.js
 
 run: check-distlang deps
 	$(DISTLANG) run index.js --v8-port=5656
 
-debug: check-distlang
-	$(DISTLANG) debug build index.js --passes=parse
-
-build: check-distlang
-	$(DISTLANG) build index.js
-
-cloudflare-deps: build
-	@$(MAKE) -f Makefile.Cloudflare deps DISTLANG=$(DISTLANG)
-
-dev: build
-	@$(MAKE) -f Makefile.Cloudflare dev DISTLANG=$(DISTLANG)
-
-deploy: build
-	@$(MAKE) -f Makefile.Cloudflare deploy DISTLANG=$(DISTLANG)
+clean:
+	rm -rf dist generated

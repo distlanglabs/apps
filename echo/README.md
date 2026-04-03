@@ -28,13 +28,21 @@ make run
 
 The local runtime listens on `http://127.0.0.1:5656`.
 
-## Routes
-
-- `POST /echo/config`
-- `GET /echo/:text`
-
 ## Build
 
 ```bash
 make build
 ```
+
+`make build` generates local output in `dist/` and `generated/`.
+
+## Clean
+
+```bash
+make clean
+```
+
+## Routes
+
+- `POST /echo/config`
+- `GET /echo/:text`
